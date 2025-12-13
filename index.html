@@ -826,6 +826,37 @@
             animation: fadeIn 0.5s ease-out;
         }
 
+        /* Copy Email Notification */
+        .copy-notification {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, var(--secondary), var(--accent));
+            color: #fff;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.4);
+            z-index: 10000;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
+
+        .copy-notification.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .contact-method.email-copy {
+            cursor: pointer;
+        }
+
+        .contact-method.email-copy:active {
+            transform: translateY(-3px) scale(0.98);
+        }
+
         /* Footer */
         footer {
             background: var(--primary);
@@ -1122,6 +1153,11 @@
     </header>
 
     <div class="mobile-overlay"></div>
+
+    <!-- Copy Email Notification -->
+    <div class="copy-notification" id="copyNotification">
+        ✓ Email copied to clipboard!
+    </div>
 
     <section class="hero">
         <div class="hero-content">
@@ -1493,11 +1529,12 @@
             </form>
 
             <div class="contact-methods" style="margin-top: 4rem;">
-                <a href="/cdn-cgi/l/email-protection#5531343b383c363d343039302d253027216564153238343c397b363a38" class="contact-method">
+                <div class="contact-method email-copy" onclick="copyEmail()">
                     <span class="icon">📧</span>
                     <h4>Email Directly</h4>
-                    <p><span class="__cf_email__" data-cfemail="d5b1b4bbb8bcb6bdb4b0b9b0ada5b0a7a1e5e495b2b8b4bcb9fbb6bab8">[email&#160;protected]</span></p>
-                </a>
+                    <p>danmichaelexpert01@gmail.com</p>
+                    <small style="color: var(--text-dim); font-size: 0.85rem; display: block; margin-top: 0.5rem;">Click to copy</small>
+                </div>
                 <a href="https://www.facebook.com/share/1ADJNgWNxC/?mibextid=wwXIfr" target="_blank" class="contact-method">
                     <span class="icon">💼</span>
                     <h4>Connect on Social</h4>
@@ -1519,6 +1556,37 @@
     </footer>
 
     <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        // Copy Email Function
+        function copyEmail() {
+            const email = 'danmichaelexpert01@gmail.com';
+            
+            // Create temporary input element
+            const tempInput = document.createElement('input');
+            tempInput.value = email;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            tempInput.setSelectionRange(0, 99999); // For mobile devices
+            
+            try {
+                // Copy to clipboard
+                document.execCommand('copy');
+                
+                // Show notification
+                const notification = document.getElementById('copyNotification');
+                notification.classList.add('show');
+                
+                // Hide notification after 3 seconds
+                setTimeout(() => {
+                    notification.classList.remove('show');
+                }, 3000);
+            } catch (err) {
+                console.error('Failed to copy email:', err);
+            }
+            
+            // Remove temporary input
+            document.body.removeChild(tempInput);
+        }
+
         // Mobile Menu Toggle
         const menuToggle = document.querySelector('.menu-toggle');
         const nav = document.querySelector('nav');
