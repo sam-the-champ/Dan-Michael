@@ -727,6 +727,105 @@
             margin: 0;
         }
 
+        /* Contact Form */
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--bg-card);
+            padding: 3rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text);
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            color: var(--text);
+            font-size: 1rem;
+            font-family: 'DM Sans', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--secondary);
+            background: rgba(255, 255, 255, 0.05);
+            box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: var(--text-dim);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1.2rem;
+            background: linear-gradient(135deg, var(--secondary), var(--accent));
+            color: #fff;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+            letter-spacing: 0.5px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 107, 53, 0.4);
+        }
+
+        .submit-btn:active {
+            transform: translateY(-1px);
+        }
+
+        .form-success {
+            background: rgba(76, 175, 80, 0.1);
+            border: 1px solid rgba(76, 175, 80, 0.3);
+            color: #4CAF50;
+            padding: 1rem;
+            border-radius: 10px;
+            margin-top: 1rem;
+            display: none;
+            text-align: center;
+        }
+
+        .form-success.show {
+            display: block;
+            animation: fadeIn 0.5s ease-out;
+        }
+
         /* Footer */
         footer {
             background: var(--primary);
@@ -771,6 +870,38 @@
             font-size: 0.9rem;
         }
 
+        /* Hamburger Menu */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 5px;
+            z-index: 1001;
+        }
+
+        .menu-toggle span {
+            width: 28px;
+            height: 3px;
+            background: var(--text);
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
         /* Responsive Design */
         @media (max-width: 968px) {
             .hero h1 {
@@ -793,20 +924,80 @@
             }
         }
 
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+
+            nav {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                max-width: 300px;
+                height: 100vh;
+                background: var(--bg-card);
+                padding: 6rem 2rem 2rem;
+                transition: right 0.4s ease;
+                border-left: 1px solid rgba(255, 255, 255, 0.1);
+                z-index: 999;
+            }
+
+            nav.active {
+                right: 0;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 2rem;
+                align-items: flex-start;
+            }
+
+            nav a {
+                font-size: 1.2rem;
+                display: block;
+                width: 100%;
+                padding: 0.5rem 0;
+            }
+
+            nav a::after {
+                bottom: 0;
+            }
+
+            /* Mobile overlay */
+            .mobile-overlay {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+                background: rgba(0, 0, 0, 0.7);
+                z-index: 998;
+                opacity: 0;
+                transition: opacity 0.4s ease;
+            }
+
+            .mobile-overlay.active {
+                display: block;
+                opacity: 1;
+            }
+        }
+
         @media (max-width: 640px) {
             header {
                 padding: 1rem 5%;
             }
 
             .logo {
-                width: 140px;
-                height: 40px;
-                font-size: 1rem;
+                width: 130px;
+                height: 45px;
+                font-size: 0.95rem;
+                letter-spacing: 1px;
             }
 
-            nav ul {
-                gap: 1rem;
-                font-size: 0.85rem;
+            .hero {
+                margin-top: 100px;
             }
 
             .hero h1 {
@@ -819,6 +1010,11 @@
 
             .cta-buttons {
                 flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                text-align: center;
             }
 
             .section-title h2 {
@@ -841,6 +1037,67 @@
                 flex-direction: column;
                 text-align: center;
             }
+
+            .book-cover {
+                height: 300px;
+            }
+
+            nav {
+                width: 80%;
+                max-width: 100%;
+            }
+
+            .contact-form {
+                padding: 2rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                width: 110px;
+                height: 40px;
+                font-size: 0.85rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+
+            .service-card,
+            .testimonial-card {
+                padding: 2rem;
+            }
+
+            .contact-form {
+                padding: 1.5rem;
+            }
+
+            .form-group input,
+            .form-group textarea {
+                padding: 0.875rem 1.25rem;
+                font-size: 0.95rem;
+            }
+
+            .submit-btn {
+                padding: 1rem;
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
@@ -849,6 +1106,11 @@
 
     <header>
         <div class="logo">DAN MICHAEL</div>
+        <button class="menu-toggle" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
         <nav>
             <ul>
                 <li><a href="#services">Services</a></li>
@@ -858,6 +1120,8 @@
             </ul>
         </nav>
     </header>
+
+    <div class="mobile-overlay"></div>
 
     <section class="hero">
         <div class="hero-content">
@@ -1189,13 +1453,50 @@
     <section class="contact" id="contact">
         <div class="contact-container">
             <h2>Ready to Transform Your Business?</h2>
-            <p>Let's discuss how strategic digital marketing can accelerate your growth. Book a free consultation and let's build something remarkable together.</p>
+            <p>Let's discuss how strategic digital marketing can accelerate your growth. Fill out the form below and I'll get back to you within 24 hours.</p>
             
-            <div class="contact-methods">
-                <a href="/cdn-cgi/l/email-protection#8ce8ede2e1e5efe4ede9e0e9f4fce9fef8bcbdccebe1ede5e0a2efe3e1" class="contact-method">
+            <form class="contact-form" action="https://formsubmit.co/danmichaelexpert01@gmail.com" method="POST">
+                <!-- FormSubmit Configuration -->
+                <input type="hidden" name="_subject" value="New Portfolio Inquiry from Website!">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_template" value="box">
+                <input type="text" name="_honey" style="display:none">
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="name">Full Name *</label>
+                        <input type="text" id="name" name="name" placeholder="John Doe" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" placeholder="john@example.com" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" placeholder="+1 (555) 000-0000">
+                    </div>
+                    <div class="form-group">
+                        <label for="service">Service Interested In *</label>
+                        <input type="text" id="service" name="service" placeholder="e.g., Email Marketing" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Tell Me About Your Project *</label>
+                    <textarea id="message" name="message" placeholder="Describe your goals, challenges, and what you're looking to achieve..." required></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+
+            <div class="contact-methods" style="margin-top: 4rem;">
+                <a href="/cdn-cgi/l/email-protection#5531343b383c363d343039302d253027216564153238343c397b363a38" class="contact-method">
                     <span class="icon">📧</span>
-                    <h4>Email Me</h4>
-                    <p><span class="__cf_email__" data-cfemail="ed898c8380848e858c888188959d889f99dddcad8a808c8481c38e8280">[email&#160;protected]</span></p>
+                    <h4>Email Directly</h4>
+                    <p><span class="__cf_email__" data-cfemail="d5b1b4bbb8bcb6bdb4b0b9b0ada5b0a7a1e5e495b2b8b4bcb9fbb6bab8">[email&#160;protected]</span></p>
                 </a>
                 <a href="https://www.facebook.com/share/1ADJNgWNxC/?mibextid=wwXIfr" target="_blank" class="contact-method">
                     <span class="icon">💼</span>
@@ -1203,8 +1504,6 @@
                     <p>Let's network</p>
                 </a>
             </div>
-
-            <a href="/cdn-cgi/l/email-protection#93f7f2fdfefaf0fbf2f6fff6ebe3f6e1e7a3a2d3f4fef2faffbdf0fcfe" class="btn btn-primary" style="margin-top: 2rem;">Schedule Free Consultation</a>
         </div>
     </section>
 
@@ -1219,7 +1518,37 @@
         </div>
     </footer>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        // Mobile Menu Toggle
+        const menuToggle = document.querySelector('.menu-toggle');
+        const nav = document.querySelector('nav');
+        const mobileOverlay = document.querySelector('.mobile-overlay');
+        const navLinks = document.querySelectorAll('nav a');
+
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            nav.classList.toggle('active');
+            mobileOverlay.classList.toggle('active');
+            document.body.style.overflow = nav.classList.contains('active') ? 'hidden' : '';
+        });
+
+        mobileOverlay.addEventListener('click', () => {
+            menuToggle.classList.remove('active');
+            nav.classList.remove('active');
+            mobileOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggle.classList.remove('active');
+                nav.classList.remove('active');
+                mobileOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
+
+        // Tab Switching
         function switchTab(tab) {
             const textTab = document.getElementById('text-testimonials');
             const videoTab = document.getElementById('video-testimonials');
