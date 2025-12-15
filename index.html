@@ -458,14 +458,22 @@
             width: 100%;
             height: 100%;
             background: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
-            opacity: 0.1;
+            opacity: 0;
         }
 
         .book-placeholder {
             font-size: 8rem;
-            opacity: 0.3;
+            opacity: 1;
             position: relative;
-            z-index: 1;
+            z-index: 10;
+            width: fit-content;
+        }
+        .book-placeholder img {
+            width: 200px;
+            height: auto;
+            object-fit: cover;
+            border-radius: 5px;
+            z-index: 10;
         }
 
         .book-info {
@@ -1273,61 +1281,61 @@
         <div class="books-grid">
             <div class="book-card">
                 <div class="book-cover">
-                    <div class="book-placeholder">📖</div>
+                    <div class="book-placeholder"><img src="book6.jpg" alt=""></div>
                 </div>
                 <div class="book-info">
-                    <h4>The Entrepreneur's Journey</h4>
-                    <p class="author">by Michael Stevens</p>
-                    <p class="results">Reached #1 in Business Category • 10K+ copies sold in 30 days</p>
+                    <h4>Sammy's Brave Adventure</h4>
+                    <p class="author">by JT. Beats</p>
+                    <p class="results">10K+ copies sold in 30 days</p>
                 </div>
             </div>
             <div class="book-card">
                 <div class="book-cover">
-                    <div class="book-placeholder">📖</div>
+                    <div class="book-placeholder"><img src="book4.jpg" alt=""></div>
                 </div>
                 <div class="book-info">
-                    <h4>Healing Through Words</h4>
-                    <p class="author">by Dr. Sarah Johnson</p>
+                    <h4>Transfusion Knight of Past</h4>
+                    <p class="author">by Stephanie Hudson</p>
                     <p class="results">Featured on Amazon Best Sellers • 5,000+ reviews with 4.8★ rating</p>
                 </div>
             </div>
             <div class="book-card">
                 <div class="book-cover">
-                    <div class="book-placeholder">📖</div>
+                    <div class="book-placeholder"><img src="book3.jpg" alt=""></div>
                 </div>
                 <div class="book-info">
-                    <h4>Digital Freedom Blueprint</h4>
-                    <p class="author">by Marcus Chen</p>
+                    <h4>Universal Fantansy List</h4>
+                    <p class="author">by T. Taylor</p>
                     <p class="results">Generated $50K in first month • Built email list of 15K readers</p>
                 </div>
             </div>
             <div class="book-card">
                 <div class="book-cover">
-                    <div class="book-placeholder">📖</div>
+                    <div class="book-placeholder"><img src="book2.jpg" alt=""></div>
                 </div>
                 <div class="book-info">
-                    <h4>The Mindful Leader</h4>
-                    <p class="author">by Rebecca Martinez</p>
+                    <h4>Opening The Frontier</h4>
+                    <p class="author">by Patrick Linsay</p>
                     <p class="results">Top 10 in Self-Help • Sustained 6-month sales momentum</p>
                 </div>
             </div>
             <div class="book-card">
                 <div class="book-cover">
-                    <div class="book-placeholder">📖</div>
+                    <div class="book-placeholder"><img src="book.jpg" alt=""></div>
                 </div>
                 <div class="book-info">
-                    <h4>Code Your Future</h4>
-                    <p class="author">by Alex Thompson</p>
+                    <h4>Losing It</h4>
+                    <p class="author">by Simon Hally</p>
                     <p class="results">Pre-launch campaign raised $25K • 8,000+ waitlist signups</p>
                 </div>
             </div>
             <div class="book-card">
                 <div class="book-cover">
-                    <div class="book-placeholder">📖</div>
+                    <div class="book-placeholder"><img src="bookk5.jpg" alt=""></div>
                 </div>
                 <div class="book-info">
-                    <h4>Finding Your Voice</h4>
-                    <p class="author">by Diana Wilson</p>
+                    <h4>Seven Words you Never To Hear/h4>
+                    <p class="author">by Denis Wilson</p>
                     <p class="results">Achieved bestseller status week 1 • 300% ROI on ad spend</p>
                 </div>
             </div>
@@ -1463,15 +1471,19 @@
                     </div>
                 </div>
 
-                <div class="video-card">
-                    <div class="video-wrapper">
-                        <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID_5" allowfullscreen></iframe>
-                    </div>
-                    <div class="video-info">
-                        <h4>How Dan Built My Reader Community</h4>
-                        <p>Sarah Kim, Romance Author</p>
-                    </div>
-                </div>
+               <div class="video-card">
+    <div class="video-wrapper">
+        <video controls style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+            <source src="reviewone.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+    <div class="video-info">
+        <h4>How Dan Built My Reader Community</h4>
+        <p>Sarah Kim, Romance Author</p>
+    </div>
+</div>
+
 
                 <div class="video-card">
                     <div class="video-wrapper">
