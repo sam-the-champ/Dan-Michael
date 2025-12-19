@@ -405,6 +405,140 @@
             padding: 8rem 5%;
         }
 
+        .video-trailers {
+            padding: 8rem 5%;
+            background: linear-gradient(180deg, var(--bg-dark) 0%, var(--bg-card) 50%, var(--bg-dark) 100%);
+        }
+
+        .trailers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .trailer-card {
+            background: var(--bg-card);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .trailer-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--secondary);
+            box-shadow: 0 25px 70px rgba(255, 107, 53, 0.3);
+        }
+
+        .trailer-video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            background: #000;
+            overflow: hidden;
+        }
+
+        .trailer-video-wrapper video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .trailer-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 50%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 1;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .trailer-card:hover .trailer-overlay {
+            opacity: 0;
+        }
+
+        .play-button {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--secondary), var(--accent));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: #fff;
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.5);
+            transform: scale(1);
+            transition: transform 0.3s ease;
+            pointer-events: none;
+        }
+
+        .trailer-card:hover .play-button {
+            transform: scale(1.1);
+        }
+
+        .trailer-info {
+            padding: 2rem;
+        }
+
+        .trailer-category {
+            display: inline-block;
+            background: rgba(255, 107, 53, 0.1);
+            color: var(--secondary);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+        }
+
+        .trailer-info h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            margin-bottom: 0.75rem;
+            color: #fff;
+        }
+
+        .trailer-info p {
+            color: var(--text-dim);
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .trailer-stats {
+            display: flex;
+            gap: 2rem;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .trailer-stat {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--text-dim);
+        }
+
+        .trailer-stat .icon {
+            color: var(--secondary);
+        }
+
+
         /* Portfolio/Books Section */
         .portfolio {
             padding: 8rem 5%;
@@ -615,6 +749,9 @@
 
             .mockup-3d {
                 transform: rotateY(0deg) rotateX(0deg);
+            }
+               .trailers-grid {
+                grid-template-columns: 1fr;
             }
         }
 
@@ -854,6 +991,8 @@
             color: var(--text-dim);
             font-size: 0.95rem;
         }
+
+        
 
         /* Contact Section */
         .contact {
