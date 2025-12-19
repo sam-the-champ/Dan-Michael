@@ -5,1172 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dan Michael | Digital Marketing Strategist</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Space+Mono:wght@400;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --primary: #0A0E27;
-            --secondary: #FF6B35;
-            --accent: #F7931E;
-            --text: #E8E8E8;
-            --text-dim: #A0A0A0;
-            --bg-dark: #050714;
-            --bg-card: #0F1529;
-            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-        }
-
-        body {
-            background: var(--bg-dark);
-            color: var(--text);
-            font-family: 'DM Sans', sans-serif;
-            overflow-x: hidden;
-            line-height: 1.6;
-        }
-
-        /* Animated Background */
-        .bg-animation {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            opacity: 0.03;
-        }
-
-        .bg-animation::before {
-            content: '';
-            position: absolute;
-            width: 200%;
-            height: 200%;
-            background: 
-                radial-gradient(circle at 20% 50%, var(--secondary) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, var(--accent) 0%, transparent 50%),
-                radial-gradient(circle at 40% 20%, #667eea 0%, transparent 50%);
-            animation: bgFloat 20s ease-in-out infinite;
-        }
-
-        @keyframes bgFloat {
-            0%, 100% { transform: translate(0, 0) rotate(0deg); }
-            33% { transform: translate(-10%, 10%) rotate(120deg); }
-            66% { transform: translate(10%, -10%) rotate(240deg); }
-        }
-
-        /* Header/Navigation */
-        header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 1.5rem 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
-            background: rgba(5, 7, 20, 0.8);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            animation: slideDown 0.8s ease-out;
-        }
-
-        @keyframes slideDown {
-            from { transform: translateY(-100%); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-
-        .logo {
-            width: 180px;
-            height: 50px;
-            background: linear-gradient(135deg, var(--secondary), var(--accent));
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'Space Mono', monospace;
-            font-weight: 700;
-            font-size: 1.2rem;
-            letter-spacing: 2px;
-            color: #fff;
-            transition: transform 0.3s ease;
-        }
-
-        .logo:hover {
-            transform: scale(1.05) rotate(-2deg);
-        }
-
-        nav ul {
-            display: flex;
-            gap: 2.5rem;
-            list-style: none;
-        }
-
-        nav a {
-            color: var(--text);
-            text-decoration: none;
-            font-weight: 500;
-            position: relative;
-            transition: color 0.3s;
-            font-size: 0.95rem;
-            letter-spacing: 0.5px;
-        }
-
-        nav a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--secondary);
-            transition: width 0.3s ease;
-        }
-
-        nav a:hover {
-            color: var(--secondary);
-        }
-
-        nav a:hover::after {
-            width: 100%;
-        }
-
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            padding: 0 5%;
-            position: relative;
-            margin-top: 80px;
-        }
-
-        .hero-content {
-            max-width: 900px;
-            animation: fadeInUp 1s ease-out;
-        }
-
-        @keyframes fadeInUp {
-            from { 
-                opacity: 0;
-                transform: translateY(40px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .hero-label {
-            display: inline-block;
-            background: rgba(255, 107, 53, 0.1);
-            color: var(--secondary);
-            padding: 0.5rem 1.5rem;
-            border-radius: 50px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            letter-spacing: 1px;
-            margin-bottom: 1.5rem;
-            border: 1px solid rgba(255, 107, 53, 0.3);
-            animation: pulse 2s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
-        }
-
-        .hero h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 5rem;
-            font-weight: 900;
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, #fff 0%, var(--text) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: fadeInUp 1s ease-out 0.2s both;
-        }
-
-        .hero h1 .highlight {
-            background: linear-gradient(135deg, var(--secondary), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            display: inline-block;
-        }
-
-        .hero p {
-            font-size: 1.3rem;
-            color: var(--text-dim);
-            max-width: 700px;
-            margin-bottom: 3rem;
-            line-height: 1.8;
-            animation: fadeInUp 1s ease-out 0.4s both;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 1.5rem;
-            animation: fadeInUp 1s ease-out 0.6s both;
-        }
-
-        .btn {
-            padding: 1rem 2.5rem;
-            border-radius: 50px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            font-size: 1rem;
-            letter-spacing: 0.5px;
-            cursor: pointer;
-            border: none;
-            display: inline-block;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--secondary), var(--accent));
-            color: #fff;
-            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.3);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(255, 107, 53, 0.4);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--text);
-            border: 2px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.05);
-            border-color: var(--secondary);
-            color: var(--secondary);
-        }
-
-        /* Stats Section */
-        .stats {
-            padding: 5rem 5%;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
-            animation: fadeInUp 1s ease-out;
-        }
-
-        .stat-card {
-            background: var(--bg-card);
-            padding: 2.5rem;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: all 0.4s ease;
-            text-align: center;
-        }
-
-        .stat-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--secondary);
-            box-shadow: 0 20px 60px rgba(255, 107, 53, 0.2);
-        }
-
-        .stat-number {
-            font-family: 'Playfair Display', serif;
-            font-size: 3.5rem;
-            font-weight: 900;
-            background: linear-gradient(135deg, var(--secondary), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-label {
-            font-size: 1.1rem;
-            color: var(--text-dim);
-            font-weight: 500;
-        }
-
-        /* Services Section */
-        .services {
-            padding: 8rem 5%;
-            background: linear-gradient(180deg, var(--bg-dark) 0%, var(--bg-card) 50%, var(--bg-dark) 100%);
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 5rem;
-        }
-
-        .section-title h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 3.5rem;
-            font-weight: 900;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, #fff 0%, var(--text) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .section-title p {
-            font-size: 1.2rem;
-            color: var(--text-dim);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2.5rem;
-        }
-
-        .service-card {
-            background: var(--bg-card);
-            padding: 3rem;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, var(--secondary), var(--accent));
-            transform: scaleX(0);
-            transition: transform 0.4s ease;
-        }
-
-        .service-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .service-card:hover {
-            transform: translateY(-10px);
-            border-color: rgba(255, 107, 53, 0.3);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
-        }
-
-        .service-icon {
-            width: 70px;
-            height: 70px;
-            background: linear-gradient(135deg, var(--secondary), var(--accent));
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .service-card h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-            color: #fff;
-        }
-
-        .service-card p {
-            color: var(--text-dim);
-            line-height: 1.8;
-            margin-bottom: 1.5rem;
-        }
-
-        .service-features {
-            list-style: none;
-            margin-top: 1.5rem;
-        }
-
-        .service-features li {
-            padding: 0.5rem 0;
-            color: var(--text-dim);
-            position: relative;
-            padding-left: 1.5rem;
-        }
-
-        .service-features li::before {
-            content: '→';
-            position: absolute;
-            left: 0;
-            color: var(--secondary);
-            font-weight: bold;
-        }
-
-        /* Testimonials Section */
-        .testimonials {
-            padding: 8rem 5%;
-        }
-
-        /* Portfolio/Books Section */
-        .portfolio {
-            padding: 8rem 5%;
-            background: linear-gradient(180deg, var(--bg-dark) 0%, var(--bg-card) 50%, var(--bg-dark) 100%);
-        }
-
-        .books-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2.5rem;
-            margin-top: 3rem;
-        }
-
-        .book-card {
-            background: var(--bg-card);
-            border-radius: 20px;
-            overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: all 0.4s ease;
-            cursor: pointer;
-        }
-
-        .book-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--secondary);
-            box-shadow: 0 20px 60px rgba(255, 107, 53, 0.3);
-        }
-
-        .book-cover {
-            width: 100%;
-            height: 500px;
-            background: linear-gradient(135deg, var(--bg-dark) 0%, var(--primary) 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .book-cover::before {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
-            opacity: 0;
-        }
-
-        .book-placeholder {
-            padding: 10px;
-            font-size: 8rem;
-            opacity: 1;
-            position: relative;
-            z-index: 10;
-            width: fit-content;
-            align-self: center;
-            
-        }
-        .book-placeholder img {
-            width: 200px;
-            height: auto;
-            object-fit: cover;
-            border-radius: 5px;
-            z-index: 10;
-            object-position: center;
-        }
-
-        .book-info {
-            padding: 2rem;
-        }
-
-        .book-info h4 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-            color: #fff;
-        }
-
-        .book-info .author {
-            color: var(--secondary);
-            font-size: 1rem;
-            margin-bottom: 1rem;
-            font-style: italic;
-        }
-
-        .book-info .results {
-            color: var(--text-dim);
-            line-height: 1.6;
-            font-size: 0.95rem;
-        }
-
-        /* Testimonials Section */
-        .testimonials {
-            padding: 8rem 5%;
-        }
-
-        .testimonial-tabs {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 4rem;
-        }
-
-        .tab-btn {
-            padding: 1rem 2.5rem;
-            background: transparent;
-            border: 2px solid rgba(255, 255, 255, 0.1);
-            color: var(--text-dim);
-            border-radius: 50px;
-            cursor: pointer;
-            font-size: 1rem;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-
-        .tab-btn.active {
-            background: linear-gradient(135deg, var(--secondary), var(--accent));
-            border-color: transparent;
-            color: #fff;
-        }
-
-        .tab-btn:hover:not(.active) {
-            border-color: var(--secondary);
-            color: var(--secondary);
-        }
-
-        .testimonial-content {
-            display: none;
-        }
-
-        .testimonial-content.active {
-            display: block;
-            animation: fadeIn 0.5s ease-out;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2.5rem;
-            margin-bottom: 4rem;
-        }
-
-        .testimonial-card {
-            background: var(--bg-card);
-            padding: 2.5rem;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: all 0.4s ease;
-        }
-
-        .testimonial-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(255, 107, 53, 0.3);
-            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
-        }
-
-        .testimonial-header {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .testimonial-avatar {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--secondary), var(--accent));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 1.5rem;
-        }
-
-        .testimonial-info h4 {
-            font-size: 1.2rem;
-            margin-bottom: 0.25rem;
-            color: #fff;
-        }
-
-        .testimonial-info p {
-            color: var(--text-dim);
-            font-size: 0.9rem;
-        }
-
-        .testimonial-text {
-            color: var(--text-dim);
-            line-height: 1.8;
-            margin-bottom: 1.5rem;
-            font-style: italic;
-        }
-
-        .stars {
-            color: var(--accent);
-            font-size: 1.2rem;
-        }
-
-        /* Video Reviews */
-        .video-reviews {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 2.5rem;
-        }
-
-        .video-card {
-            position: relative;
-            border-radius: 20px;
-            overflow: hidden;
-            background: var(--bg-card);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: all 0.4s ease;
-        }
-
-        .video-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
-        }
-
-        .video-wrapper {
-            position: relative;
-            padding-bottom: 56.25%;
-            height: 0;
-            background: #000;
-        }
-
-        .video-wrapper iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        .video-info {
-            padding: 1.5rem;
-        }
-
-        .video-info h4 {
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-            color: #fff;
-        }
-
-        .video-info p {
-            color: var(--text-dim);
-            font-size: 0.95rem;
-        }
-
-        /* Contact Section */
-        .contact {
-            padding: 8rem 5%;
-            background: linear-gradient(180deg, var(--bg-dark) 0%, var(--primary) 100%);
-        }
-
-        .contact-container {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .contact-container h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 3.5rem;
-            font-weight: 900;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, #fff 0%, var(--text) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .contact-container p {
-            font-size: 1.3rem;
-            color: var(--text-dim);
-            margin-bottom: 3rem;
-            line-height: 1.8;
-        }
-
-        .contact-methods {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            flex-wrap: wrap;
-            margin-bottom: 3rem;
-        }
-
-        .contact-method {
-            background: var(--bg-card);
-            padding: 2rem 3rem;
-            border-radius: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: all 0.3s ease;
-            text-decoration: none;
-            color: var(--text);
-        }
-
-        .contact-method:hover {
-            transform: translateY(-5px);
-            border-color: var(--secondary);
-            box-shadow: 0 15px 40px rgba(255, 107, 53, 0.2);
-        }
-
-        .contact-method .icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            display: block;
-        }
-
-        .contact-method h4 {
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .contact-method p {
-            font-size: 0.95rem;
-            color: var(--text-dim);
-            margin: 0;
-        }
-
-        /* Contact Form */
-        .contact-form {
-            max-width: 600px;
-            margin: 0 auto;
-            background: var(--bg-card);
-            padding: 3rem;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: var(--text);
-            font-weight: 500;
-            font-size: 0.95rem;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 1rem 1.5rem;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            color: var(--text);
-            font-size: 1rem;
-            font-family: 'DM Sans', sans-serif;
-            transition: all 0.3s ease;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--secondary);
-            background: rgba(255, 255, 255, 0.05);
-            box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
-        }
-
-        .form-group textarea {
-            min-height: 150px;
-            resize: vertical;
-        }
-
-        .form-group input::placeholder,
-        .form-group textarea::placeholder {
-            color: var(--text-dim);
-        }
-
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
-        }
-
-        .submit-btn {
-            width: 100%;
-            padding: 1.2rem;
-            background: linear-gradient(135deg, var(--secondary), var(--accent));
-            color: #fff;
-            border: none;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 1rem;
-            letter-spacing: 0.5px;
-        }
-
-        .submit-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(255, 107, 53, 0.4);
-        }
-
-        .submit-btn:active {
-            transform: translateY(-1px);
-        }
-
-        .form-success {
-            background: rgba(76, 175, 80, 0.1);
-            border: 1px solid rgba(76, 175, 80, 0.3);
-            color: #4CAF50;
-            padding: 1rem;
-            border-radius: 10px;
-            margin-top: 1rem;
-            display: none;
-            text-align: center;
-        }
-
-        .form-success.show {
-            display: block;
-            animation: fadeIn 0.5s ease-out;
-        }
-
-        /* Copy Email Notification */
-        .copy-notification {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: linear-gradient(135deg, var(--secondary), var(--accent));
-            color: #fff;
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            font-weight: 600;
-            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.4);
-            z-index: 10000;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.3s ease;
-            pointer-events: none;
-        }
-
-        .copy-notification.show {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .contact-method.email-copy {
-            cursor: pointer;
-        }
-
-        .contact-method.email-copy:active {
-            transform: translateY(-3px) scale(0.98);
-        }
-
-        /* Footer */
-        footer {
-            background: var(--primary);
-            padding: 3rem 5%;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .footer-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 2rem;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1.5rem;
-        }
-
-        .social-links a {
-            width: 45px;
-            height: 45px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text);
-            text-decoration: none;
-            transition: all 0.3s ease;
-            font-size: 1.2rem;
-        }
-
-        .social-links a:hover {
-            background: linear-gradient(135deg, var(--secondary), var(--accent));
-            transform: translateY(-3px);
-        }
-
-        .copyright {
-            color: var(--text-dim);
-            font-size: 0.9rem;
-        }
-
-        /* Hamburger Menu */
-        .menu-toggle {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            background: transparent;
-            border: none;
-            cursor: pointer;
-            padding: 5px;
-            z-index: 1001;
-        }
-
-        .menu-toggle span {
-            width: 28px;
-            height: 3px;
-            background: var(--text);
-            border-radius: 3px;
-            transition: all 0.3s ease;
-        }
-
-        .menu-toggle.active span:nth-child(1) {
-            transform: rotate(45deg) translate(8px, 8px);
-        }
-
-        .menu-toggle.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .menu-toggle.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(7px, -7px);
-        }
-
-        /* Responsive Design */
-        @media (max-width: 968px) {
-            .hero h1 {
-                font-size: 3.5rem;
-            }
-
-            .section-title h2 {
-                font-size: 2.5rem;
-            }
-
-            nav ul {
-                gap: 1.5rem;
-            }
-
-            .services-grid,
-            .testimonials-grid,
-            .video-reviews,
-            .books-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .menu-toggle {
-                display: flex;
-            }
-
-            nav {
-                position: fixed;
-                top: 0;
-                right: -100%;
-                width: 70%;
-                max-width: 300px;
-                height: 100vh;
-                background: var(--bg-card);
-                padding: 6rem 2rem 2rem;
-                transition: right 0.4s ease;
-                border-left: 1px solid rgba(255, 255, 255, 0.1);
-                z-index: 999;
-            }
-
-            nav.active {
-                right: 0;
-            }
-
-            nav ul {
-                flex-direction: column;
-                gap: 2rem;
-                align-items: flex-start;
-            }
-
-            nav a {
-                font-size: 1.2rem;
-                display: block;
-                width: 100%;
-                padding: 0.5rem 0;
-            }
-
-            nav a::after {
-                bottom: 0;
-            }
-
-            /* Mobile overlay */
-            .mobile-overlay {
-                display: none;
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100vh;
-                background: rgba(0, 0, 0, 0.7);
-                z-index: 998;
-                opacity: 0;
-                transition: opacity 0.4s ease;
-            }
-
-            .mobile-overlay.active {
-                display: block;
-                opacity: 1;
-            }
-            .book-cover {
-        height: 360px;
-    }
-
-    .book-placeholder img {
-        width: 150px;
-    }
-        }
-
-        @media (max-width: 640px) {
-            header {
-                padding: 1rem 5%;
-            }
-
-            .logo {
-                width: 130px;
-                height: 45px;
-                font-size: 0.95rem;
-                letter-spacing: 1px;
-            }
-
-            .hero {
-                margin-top: 100px;
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero p {
-                font-size: 1.1rem;
-            }
-
-            .cta-buttons {
-                flex-direction: column;
-            }
-
-            .btn {
-                width: 100%;
-                text-align: center;
-            }
-
-            .section-title h2 {
-                font-size: 2rem;
-            }
-
-            .stat-number {
-                font-size: 2.5rem;
-            }
-
-            .contact-container h2 {
-                font-size: 2.5rem;
-            }
-
-            .contact-methods {
-                flex-direction: column;
-            }
-
-            .footer-content {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .book-cover {
-        height: 300px;
-    }
-
-    .book-placeholder img {
-        width: 120px;
-    }
-
-    .book-info {
-        padding: 1.5rem;
-    }
-}
-
-            nav {
-                width: 80%;
-                max-width: 100%;
-            }
-
-            .contact-form {
-                padding: 2rem;
-            }
-
-            .form-row {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .logo {
-                width: 110px;
-                height: 40px;
-                font-size: 0.85rem;
-            }
-
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .hero p {
-                font-size: 1rem;
-            }
-
-            .section-title h2 {
-                font-size: 1.8rem;
-            }
-
-            .stat-number {
-                font-size: 2rem;
-            }
-
-            .service-card,
-            .testimonial-card {
-                padding: 2rem;
-            }
-
-            .contact-form {
-                padding: 1.5rem;
-            }
-
-            .form-group input,
-            .form-group textarea {
-                padding: 0.875rem 1.25rem;
-                font-size: 0.95rem;
-            }
-            .book-cover {
-        height: 300px;
-    }
-
-    .book-placeholder img {
-        width: 120px;
-    }
-
-    .book-info {
-        padding: 1.5rem;
-    }
-}
-
-            .submit-btn {
-                padding: 1rem;
-                font-size: 1rem;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
+    <meta name="description" content="Dan Michael - Digital Marketing Strategist specializing in email
 </head>
 <body>
     <div class="bg-animation"></div>
@@ -1185,6 +21,7 @@
         <nav>
             <ul>
                 <li><a href="#services">Services</a></li>
+                <li><a href="#campaigns">Campaigns</a></li>
                 <li><a href="#portfolio">Portfolio</a></li>
                 <li><a href="#testimonials">Results</a></li>
                 <li><a href="#contact">Let's Talk</a></li>
@@ -1213,16 +50,16 @@
 
     <section class="stats">
         <div class="stat-card">
-            <div class="stat-number">500K+</div>
+            <div class="stat-number">125K+</div>
             <div class="stat-label">Emails Delivered</div>
         </div>
         <div class="stat-card">
-            <div class="stat-number">250%</div>
+            <div class="stat-number">160%</div>
             <div class="stat-label">Avg. ROI Increase</div>
         </div>
         <div class="stat-card">
-            <div class="stat-number">50+</div>
-            <div class="stat-label">Brands Transformed</div>
+            <div class="stat-number">35+</div>
+            <div class="stat-label">Successful Campaigns</div>
         </div>
         <div class="stat-card">
             <div class="stat-number">98%</div>
@@ -1305,7 +142,7 @@
         </div>
     </section>
 
-    <section class="portfolio" id="portfolio">
+     <section class="portfolio" id="portfolio">
         <div class="section-title">
             <h2>Books I've Helped Launch</h2>
             <p>Real campaigns. Real authors. Real bestsellers.</p>
@@ -1313,12 +150,12 @@
         <div class="books-grid">
             <div class="book-card">
                 <div class="book-cover">
-                    <div class="book-placeholder"><img src="book6.jpg" alt=""></div>
+                    <div class="book-placeholder"><img src="childrenbook.jpg" alt=""></div>
                 </div>
                 <div class="book-info">
-                    <h4>Sammy's Brave Adventure</h4>
-                    <p class="author">by JT. Beats</p>
-                    <p class="results">10K+ copies sold in 30 days</p>
+                    <h4>Ali's Big Adventure</h4>
+                    <p class="author">by Roxie Fiste</p>
+                    <p class="results">Hundreds of copies sold in the first month</p>
                 </div>
             </div>
             <div class="book-card">
@@ -1338,29 +175,11 @@
                 <div class="book-info">
                     <h4>Universal Fantansy List</h4>
                     <p class="author">by T. Taylor</p>
-                    <p class="results">Generated $50K in first month • Built email list of 15K readers</p>
+                    <p class="results">Generated more leads in first month • Built email list of 2K readers</p>
                 </div>
             </div>
-            <div class="book-card">
-                <div class="book-cover">
-                    <div class="book-placeholder"><img src="book2.jpg" alt=""></div>
-                </div>
-                <div class="book-info">
-                    <h4>Opening The Frontier</h4>
-                    <p class="author">by Patrick Linsay</p>
-                    <p class="results">Top 10 in Self-Help • Sustained 6-month sales momentum</p>
-                </div>
-            </div>
-            <div class="book-card">
-                <div class="book-cover">
-                    <div class="book-placeholder"><img src="book.jpg" alt=""></div>
-                </div>
-                <div class="book-info">
-                    <h4>Losing It</h4>
-                    <p class="author">by Simon Hally</p>
-                    <p class="results">Pre-launch campaign raised $25K • 8,000+ waitlist signups</p>
-                </div>
-            </div>
+    
+
             <div class="book-card">
                 <div class="book-cover">
                     <div class="book-placeholder"><img src="bookk5.jpg" alt=""></div>
@@ -1369,6 +188,64 @@
                     <h4>Seven Words you Never To Hear</h4>
                     <p class="author">by Denis Wilson</p>
                     <p class="results">Achieved bestseller status week 1 • 300% ROI on ad spend</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="campaigns" id="campaigns">
+        <div class="section-title">
+            <h2>Campaign Success Stories</h2>
+            <p>Before and after results from real marketing campaigns</p>
+        </div>
+        <div class="campaigns-grid">
+            <div class="campaign-card">
+                <h3 class="campaign-title">Email Marketing Campaign - Fiction Author</h3>
+                <div class="campaign-mockup">
+                    <img src="book6.jpg" alt="Campaign Screenshot" class="mockup-3d">
+                </div>
+                <div class="before-after">
+                    <div class="metric-box">
+                        <div class="metric-label">Before Campaign</div>
+                        <div class="metric-value">$380</div>
+                        <p style="color: var(--text-dim); margin-top: 0.5rem; font-size: 0.9rem;">Monthly revenue</p>
+                    </div>
+                    <div class="metric-box after">
+                        <div class="metric-label">After Campaign</div>
+                        <div class="metric-value">$7,200</div>
+                        <p style="color: var(--text-dim); margin-top: 0.5rem; font-size: 0.9rem;">In 2 months</p>
+                    </div>
+                </div>
+                <div class="campaign-results">
+                    <div class="result-item">Built targeted email list from 0 to 1,840 subscribers</div>
+                    <div class="result-item">Created 5-email automated welcome sequence</div>
+                    <div class="result-item">Sold 520 copies across 2-book series</div>
+                    <div class="result-item">35% email open rate, 8% click-through rate</div>
+                </div>
+            </div>
+
+            <div class="campaign-card">
+                <h3 class="campaign-title">Amazon Ads & Sales Funnel - Non-Fiction</h3>
+                <div class="campaign-mockup">
+                    <img src="book2.jpg" alt="Campaign Screenshot" class="mockup-3d">
+                </div>
+                <div class="before-after">
+                    <div class="metric-box">
+                        <div class="metric-label">Before Optimization</div>
+                        <div class="metric-value">28</div>
+                        <p style="color: var(--text-dim); margin-top: 0.5rem; font-size: 0.9rem;">Copies/month</p>
+                    </div>
+                    <div class="metric-box after">
+                        <div class="metric-label">After 60 Days</div>
+                        <div class="metric-value">485</div>
+                        <p style="color: var(--text-dim); margin-top: 0.5rem; font-size: 0.9rem;">Copies sold</p>
+                    </div>
+                </div>
+                <div class="campaign-results">
+                    <div class="result-item">Optimized Amazon product page and keywords</div>
+                    <div class="result-item">Launched targeted Amazon PPC campaigns</div>
+                    <div class="result-item">Created lead magnet funnel generating 680 leads</div>
+                    <div class="result-item">Achieved 225% ROI on ad spend</div>
                 </div>
             </div>
         </div>
@@ -1395,7 +272,7 @@
                             <p>CEO, TechFlow Solutions</p>
                         </div>
                     </div>
-                    <p class="testimonial-text">"Dan transformed our email marketing from an afterthought to our highest ROI channel. His campaigns generated $250K in revenue in just 3 months. The strategic approach and attention to detail is unmatched."</p>
+                    <p class="testimonial-text">"Dan transformed our email marketing from an afterthought to our highest ROI channel. His campaigns generated $28K in revenue in just 3 months. The strategic approach and attention to detail is unmatched."</p>
                     <div class="stars">★★★★★</div>
                 </div>
 
@@ -1407,7 +284,7 @@
                             <p>Founder, Urban Fitness Co.</p>
                         </div>
                     </div>
-                    <p class="testimonial-text">"Our ad spend was burning money until Dan stepped in. He cut our cost per acquisition by 60% while tripling our conversion rate. The video ads he created are still our top performers."</p>
+                    <p class="testimonial-text">"Our ad spend was burning money until Dan stepped in. He cut our cost per acquisition by 42% while improving our conversion rate significantly. The video ads he created are still our top performers."</p>
                     <div class="stars">★★★★★</div>
                 </div>
 
@@ -1419,7 +296,7 @@
                             <p>Marketing Director, GreenLeaf Organics</p>
                         </div>
                     </div>
-                    <p class="testimonial-text">"Working with Dan was a game-changer. His SEO strategy took us from page 5 to the top 3 for our main keywords. Organic traffic is up 340% and the quality of leads has never been better."</p>
+                    <p class="testimonial-text">"Working with Dan was a game-changer. His SEO strategy improved our rankings significantly for our main keywords. Organic traffic is up 180% and the quality of leads has never been better."</p>
                     <div class="stars">★★★★★</div>
                 </div>
 
@@ -1431,7 +308,7 @@
                             <p>Owner, Artisan Coffee Roasters</p>
                         </div>
                     </div>
-                    <p class="testimonial-text">"Dan doesn't just deliver services—he delivers results. The email automation sequences he built consistently generate 30% of our monthly revenue on autopilot. Best investment we've made."</p>
+                    <p class="testimonial-text">"Dan doesn't just deliver services—he delivers results. The email automation sequences he built consistently generate 22% of our monthly revenue on autopilot. Best investment we've made."</p>
                     <div class="stars">★★★★★</div>
                 </div>
 
@@ -1443,7 +320,7 @@
                             <p>VP Marketing, Nexus Software</p>
                         </div>
                     </div>
-                    <p class="testimonial-text">"The promotional videos Dan created captured our brand perfectly and drove a 200% increase in demo requests. His understanding of what makes content convert is exceptional."</p>
+                    <p class="testimonial-text">"The promotional videos Dan created captured our brand perfectly and drove an 85% increase in demo requests. His understanding of what makes content convert is exceptional."</p>
                     <div class="stars">★★★★★</div>
                 </div>
 
@@ -1455,7 +332,7 @@
                             <p>Founder, Peak Performance Coaching</p>
                         </div>
                     </div>
-                    <p class="testimonial-text">"Dan's data-driven approach to digital marketing is refreshing. Every decision is backed by analytics, every campaign is optimized for performance. Our business has grown 5x since partnering with him."</p>
+                    <p class="testimonial-text">"Dan's data-driven approach to digital marketing is refreshing. Every decision is backed by analytics, every campaign is optimized for performance. Our business has grown significantly since partnering with him."</p>
                     <div class="stars">★★★★★</div>
                 </div>
             </div>
@@ -1503,19 +380,18 @@
                     </div>
                 </div> -->
 
-               <div class="video-card">
+                <div class="video-card">
     <div class="video-wrapper">
         <video controls style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
             <source src="reviewone.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
     </div>
-    <div class="video-info">
-        <h4>How Dan Built My Reader Community</h4>
-        <p>Sarah Kim, Romance Author</p>
+        <div class="video-info">
+           <h4>How Dan Built My Reader Community</h4>
+           <p>Sarah Kim, Romance Author</p>
+        </div>
     </div>
-</div>
-
 
                 <!-- <div class="video-card">
                     <div class="video-wrapper">
@@ -1576,7 +452,7 @@
                 <div class="contact-method email-copy" onclick="copyEmail()">
                     <span class="icon">📧</span>
                     <h4>Email Directly</h4>
-                    <p>danmichaelexpert01@gmail.com</p>
+                    
                     <small style="color: var(--text-dim); font-size: 0.85rem; display: block; margin-top: 0.5rem;">Click to copy</small>
                 </div>
                 <a href="https://www.facebook.com/share/1ADJNgWNxC/?mibextid=wwXIfr" target="_blank" class="contact-method">
@@ -1599,7 +475,7 @@
         </div>
     </footer>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         // Copy Email Function
         function copyEmail() {
             const email = 'danmichaelexpert01@gmail.com';
@@ -1704,10 +580,10 @@
                 if (entry.isIntersecting) {
                     entry.target.style.animation = 'fadeInUp 0.8s ease-out forwards';
                 }
-            });
+                });
         }, observerOptions);
 
-        document.querySelectorAll('.service-card, .testimonial-card, .stat-card, .video-card, .book-card').forEach(el => {
+        document.querySelectorAll('.service-card, .testimonial-card, .stat-card, .video-card, .book-card, .campaign-card').forEach(el => {
             observer.observe(el);
         });
     </script>
